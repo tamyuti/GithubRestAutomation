@@ -1,8 +1,7 @@
 package github;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+
 
 import org.apache.http.HttpResponse;
 import org.apache.http.ParseException;
@@ -44,7 +43,11 @@ public class GithubUsers {
 		ObjectMapper map=new ObjectMapper();
 		githubUsers=map.readValue(json, GithubUserPojo[].class);
 		for(GithubUserPojo obj:githubUsers){
-			System.out.println(obj.getLogin());
+			if(obj.getLogin().equals("pjhyett")){
+				String id=obj.getId();
+				Assert.assertEquals("3", id);
+				break;
+			}
 		}
 	}
 
